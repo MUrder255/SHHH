@@ -303,6 +303,12 @@
     "categories": ["all", "local"]
   },
   {
+    "name": "Junkyard Simulator",
+    "link": "/games/junkyard-simulator/index.html",
+    "image": "/assets/media/icons/junkyard-simulator.svg",
+    "categories": ["all", "local", "game"]
+  },
+  {
     "name": "Tube Jumpers",
     "link": "https://unblocked76.github.io/tube-jumpers/",
     "image": "/assets/media/icons/tubejumpers.webp",
