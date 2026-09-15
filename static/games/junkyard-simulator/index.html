@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Junkyard Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="game"></canvas>
+  <canvas id="minimap"></canvas>
+
+  <div id="hud">
+    <div class="hud-row">
+      <span class="pill" id="cashPill">$0</span>
+      <span class="pill" id="scrapPill">Scrap 0/20</span>
+      <span class="pill warn" id="chaosPill" hidden>⚠ Chaos <span id="chaosVal">0</span>%</span>
+    </div>
+    <div id="vehicleBarWrap" hidden>
+      <div class="barLabel">Vehicle Condition</div>
+      <div class="bar"><div id="vehicleBar" class="barFill"></div></div>
+    </div>
+  </div>
+
+  <div id="prompt" hidden></div>
+  <div id="toastWrap"></div>
+  <div id="bustedBanner" hidden>BUSTED! Scrap scattered nearby...</div>
+
+  <!-- Shop / Garage modal -->
+  <div id="shopModal" class="modal" hidden>
+    <div class="modalBox">
+      <div class="modalHead">
+        <div class="tabs">
+          <button class="tabBtn active" data-tab="sell">Sell Scrap</button>
+          <button class="tabBtn" data-tab="upgrades">Upgrades</button>
+          <button class="tabBtn" data-tab="stats">Stats</button>
+        </div>
+        <button id="closeShop" class="closeBtn">✕</button>
+      </div>
+      <div class="modalBody">
+        <div id="tab-sell" class="tabPane">
+          <p class="muted">You're carrying <b id="sellCount">0</b> scrap worth <b id="sellValue">$0</b>.</p>
+          <button id="sellAllBtn" class="bigBtn">Sell All Scrap</button>
+          <p class="muted small">Tip: the Crusher out back pays a bonus if you bring a full load.</p>
+        </div>
+        <div id="tab-upgrades" class="tabPane" hidden>
+          <div id="upgradeList"></div>
+        </div>
+        <div id="tab-stats" class="tabPane" hidden>
+          <div id="statsList"></div>
+          <button id="resetSaveBtn" class="bigBtn danger">Reset Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="pauseModal" class="modal" hidden>
+    <div class="modalBox">
+      <div class="modalHead">
+        <h2>Paused</h2>
+        <button id="closePause" class="closeBtn">✕</button>
+      </div>
+      <div class="modalBody">
+        <h3>Controls</h3>
+        <ul class="controlsList">
+          <li><b>WASD / Arrows</b> — Move or Drive</li>
+          <li><b>Shift</b> — Sprint (on foot)</li>
+          <li><b>E</b> — Interact / Enter-Exit Vehicle / Collect / Shop</li>
+          <li><b>M</b> — Toggle Big Map</li>
+          <li><b>P / Esc</b> — Pause</li>
+        </ul>
+        <p class="muted small">Smash props around the city for bonus scrap, but watch your Chaos meter — go too far and a Junk Inspector will come looking for you.</p>
+        <button id="resumeBtn" class="bigBtn">Resume</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="bigMap" class="modal" hidden>
+    <div class="modalBox mapBox">
+      <div class="modalHead">
+        <h2>City Map</h2>
+        <button id="closeBigMap" class="closeBtn">✕</button>
+      </div>
+      <canvas id="bigMapCanvas"></canvas>
+    </div>
+  </div>
+
+  <!-- Touch controls -->
+  <div id="touchControls">
+    <div id="joyBase"><div id="joyStick"></div></div>
+    <div id="touchButtons">
+      <button id="btnInteract" class="touchBtn">E</button>
+      <button id="btnSprint" class="touchBtn small">SPRINT</button>
+    </div>
+  </div>
+
+  <div id="startScreen">
+    <div class="startBox">
+      <h1>🔧 Junkyard Simulator</h1>
+      <p>Collect scrap, sell it for cash, upgrade your gear and vehicles, then take to the streets and smash the city to bits — just don't let the Junk Inspector catch you.</p>
+      <button id="startBtn" class="bigBtn">Start Scrapping</button>
+      <p class="muted small">WASD/Arrows to move · E to interact · Shift to sprint</p>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
